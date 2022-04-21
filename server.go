@@ -33,7 +33,7 @@ type Req struct {
 type Res []SavedRect
 var re Rect;
 
-func intersects(r1 Rect, r2 Rect)  bool {
+func Overlaps(r1 Rect, r2 Rect)  bool {
 	if r1.X > r2.X + r2.Width || r2.X > r1.X + r1.Width{
 		return false
 	}
@@ -64,7 +64,7 @@ func requestHandler(w http.ResponseWriter, r *http.Request) {
 		} else {
 			
 			for _, rect := range req.Input {
-				if intersects(req.Main, rect){
+				if Overlaps(req.Main, rect){
 					dt := time.Now()
 					var sRect = SavedRect {
 						X: rect.X,
